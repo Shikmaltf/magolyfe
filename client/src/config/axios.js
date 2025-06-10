@@ -3,7 +3,7 @@ import axios from 'axios';
 import { performLogout, isTokenStillValid } from '../utils/auth'; // Pastikan path ini benar
 
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
 // Request interceptor

@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 // Komponen Umum
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute'; // Komponen untuk rute privat
-import Chatbot from './components/Chatbot'; // <-- Impor komponen Chatbot
 
 // Halaman Publik
 import HomePage from './pages/HomePage';
@@ -68,7 +67,6 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
-      <Chatbot /> {/* <-- Tambahkan komponen Chatbot di sini */}
     </Router>
   );
 }
