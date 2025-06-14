@@ -22,6 +22,8 @@ const About = () => {
   // Data tim bisa diambil dari API atau didefinisikan di sini jika statis
   const teamMembers = [
     { name: 'Sayyidah Hikma Lutfiyana', role: 'Pengembang Platform', imageUrl: 'https://placehold.co/150x150/34D399/065F46?text=SHL&font=roboto', bio: 'Bertanggung jawab atas pengembangan teknologi dan pengalaman pengguna di Magolyfe.' },
+    { name: 'KSM Watesa Jamaras 02', role: 'Kolaborator', imageUrl: '/logo.png', bio: 'Komunitas penggerak yang memfasilitasi pengembang dalam hal materi edukasi' },
+
   ];
 
 
@@ -30,7 +32,7 @@ const About = () => {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="mb-12 text-center">
-          <Leaf size={60} className="mx-auto mb-4 text-green-600" />
+          <img src="/logo2.png" alt="Logo" className="mx-auto h-48 w-48" />
           <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 mb-3">
             Tentang <span className="text-lime-600">Magolyfe</span>
           </h1>
@@ -46,8 +48,7 @@ const About = () => {
             Filosofi Kami
           </h2>
           <p className="text-gray-700 mb-4 leading-relaxed">
-            Magolyfe lahir dari kepedulian terhadap kesehatan manusia dan kelestarian lingkungan. Kami percaya bahwa alam menyediakan solusi luar biasa untuk tantangan modern, mulai dari kebutuhan pangan hingga pengelolaan limbah. Dengan menggabungkan kearifan tradisional dan inovasi teknologi, kami berupaya menciptakan ekosistem yang mendukung gaya hidup sehat dan berkelanjutan.
-          </p>
+            Kelompok Swadaya Masyarakat WATESA (Wanita Tenaga Sisa) Jamaras 02 atau KSM Watesa Jamaras 02 yang berasal dari RW 02 Jamaras, Kelurahan Jatihandap. Sejak 2021, kami telah berjibaku dalam kegiatan kemasyarakatan yang semata-mata kami lakukan hanya untuk kebaikan bersama dan kebersihan lingkungan sekitar. Mulai dari penyusunan sistem pengelolaan sampah, sosialisasi pemilahan sampah, hingga proses pengolahan sampah organik secara mandiri yang kami lakukan di RW 02 Jamaras.          </p>
           <p className="text-gray-700 leading-relaxed">
             Kami berkomitmen untuk menyediakan informasi yang akurat, edukasi yang memberdayakan, dan produk berkualitas tinggi yang berasal dari sumber alami dan diproses secara bertanggung jawab.
           </p>
@@ -81,7 +82,7 @@ const About = () => {
               <Users size={36} className="mr-3" />
               Pengembang
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
               {teamMembers.map((member) => (
                 <TeamMemberCard
                   key={member.name}

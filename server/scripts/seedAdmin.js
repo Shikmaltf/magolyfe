@@ -10,7 +10,7 @@ async function createAdmin() {
     await mongoose.connect(process.env.MONGO_URI);
 
     const username = 'admin';
-    const plainPassword = 'admin123';
+    const plainPassword = 'watesa02';
 
     // Hash password
     const hashedPassword = await bcrypt.hash(plainPassword, 10);

@@ -1,6 +1,6 @@
 // frontend/src/pages/Contact.jsx
 import React, { useState } from 'react';
-import { Send, Mail, Phone, MapPin, MessageSquare } from 'lucide-react'; // Added icons
+import { Send, Mail, Phone, MapPin, MessageSquare, InstagramIcon} from 'lucide-react'; // Added icons
 
 const ContactInfoItem = ({ icon, title, children }) => (
   <div className="flex items-start space-x-3">
@@ -116,17 +116,22 @@ const Contact = () => {
               Informasi Kontak Lainnya
             </h2>
             <ContactInfoItem icon={<MapPin size={24} />} title="Energy of Jamaras">
+              <a href="https://maps.app.goo.gl/Pn6TM1iXuknHZCgx5" target="_blank" className="hover:text-green-700 transition-colors">
               Jl. Jamaras III, Kel. Jatihandap,<br />
               Kec Mandalajati, Kota Bandung, Jawa Barat <br />
-              (Kunjungan hanya dengan perjanjian)
+              (Kunjungan hanya dengan perjanjian)</a> 
             </ContactInfoItem>
             <hr className="border-green-200"/>
             <ContactInfoItem icon={<Phone size={20} />} title="Telepon">
-              <a href="tel:+62212345678" className="hover:text-green-700 transition-colors">+62 21 2345 678</a> 
+              <a href="tel:+62212345678" target="_blank" className="hover:text-green-700 transition-colors">+62 21 2345 678</a> 
+            </ContactInfoItem>
+            <hr className="border-green-200"/>
+            <ContactInfoItem icon={<InstagramIcon size={20} />} title="Instagram">
+              <a href="https://www.instagram.com/ksm_watesa_jamaras_02" target="_blank" className="hover:text-green-700 transition-colors">@ksm_watesa_jamaras_02</a> 
             </ContactInfoItem>
             <hr className="border-green-200"/>
             <ContactInfoItem icon={<Mail size={20} />} title="Email">
-              <a href="mailto:info@magolyfe.com" className="hover:text-green-700 transition-colors">info@magolyfe.com</a>
+              <a href="mailto:info@magolyfe.com" target="_blank" className="hover:text-green-700 transition-colors">info@magolyfe.com</a>
             </ContactInfoItem>
             
              {/* Placeholder for a map, if you want to add one later */}

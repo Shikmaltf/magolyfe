@@ -7,27 +7,15 @@ const educationVideos = [
   {
     id: '1', // ID unik untuk key
     title: 'Panduan Lengkap Budidaya Maggot BSF untuk Pemula',
-    videoId: 'dQw4w9WgXcQ', // Contoh ID video YouTube (Rick Astley - Never Gonna Give You Up)
+    videoId: 'wus8-Fkk_s8', // Contoh ID video YouTube (Rick Astley - Never Gonna Give You Up)
     description: 'Pelajari dasar-dasar budidaya maggot Black Soldier Fly (BSF) dari persiapan hingga panen. Cocok untuk Anda yang baru memulai.',
   },
   {
     id: '2',
     title: 'Manajemen Pakan dan Media Tumbuh Maggot Berkualitas',
-    videoId: 'L_LUpnjgPso', // Contoh ID video YouTube (Another placeholder)
+    videoId: 'wus8-Fkk_s8', // Contoh ID video YouTube (Another placeholder)
     description: 'Tips memilih pakan organik dan mengelola media tumbuh agar maggot berkembang optimal dan berkualitas tinggi.',
   },
-  {
-    id: '3',
-    title: 'Mengatasi Hama dan Penyakit pada Budidaya Maggot',
-    videoId: '3JZ_D3ELwOQ', // Contoh ID video YouTube (Another placeholder)
-    description: 'Kenali berbagai potensi hama dan penyakit yang bisa menyerang budidaya maggot Anda, serta cara efektif untuk mencegah dan mengatasinya.',
-  },
-  {
-    id: '4',
-    title: 'Panen dan Pasca-Panen Maggot BSF',
-    videoId: 'o-YBDTqX_ZU', // Contoh ID video YouTube (Another placeholder)
-    description: 'Teknik panen maggot yang efisien dan cara pengolahan pasca-panen untuk berbagai keperluan, seperti pakan ternak atau pupuk organik.',
-  }
 ];
 
 // Komponen untuk menampilkan satu item video
