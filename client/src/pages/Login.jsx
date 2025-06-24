@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 import api from '../config/axios';
 import { useNavigate, Link } from 'react-router-dom'; // Tambahkan Link
 import { parseJwt, isTokenStillValid } from '../utils/auth';
-import { LogInIcon, AlertTriangle } from 'lucide-react'; // Icon
+import { LogInIcon, AlertTriangle, Eye, EyeOff } from 'lucide-react'; // Icon
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -118,20 +119,28 @@ const Login = () => {
                             onChange={handleUsernameChange} 
                         />
                     </div>
-                    <div>
+                      <div className="relative">
                         <label htmlFor="password_login" className="sr-only">Password</label>
                         <input
-                            id="password_login"
-                            name="password"
-                            type="password"
-                            autoComplete="current-password" 
-                            required
-                            className="appearance-none rounded-md relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                            placeholder="Password"
-                            value={password}
-                            onChange={handlePasswordChange} 
+                          id="password_login"
+                          name="password"
+                          type={showPassword ? 'text' : 'password'}
+                          autoComplete="current-password"
+                          required
+                          className="appearance-none rounded-md relative block w-full px-4 py-3 pr-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                          placeholder="Password"
+                          value={password}
+                          onChange={handlePasswordChange}
                         />
-                    </div>
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none"
+                          tabIndex={-1}
+                        >
+                          {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                        </button>
+                      </div>
                 </div>
 
                 <div className="flex items-center justify-end text-sm">

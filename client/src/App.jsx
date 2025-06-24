@@ -13,6 +13,7 @@ import Contact from './pages/Contact';
 import Education from './pages/Education';
 import Gallery from './pages/Gallery';
 import Product from './pages/Product';
+import Reviews from './pages/Admin/Reviews';
 
 // Halaman Autentikasi & Reset Password
 import Login from './pages/Login';
@@ -60,7 +61,8 @@ function App() {
           <Route path="/admin/products" element={<PrivateRoute><Products /></PrivateRoute>} />
           <Route path="/admin/products/new" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
           <Route path="/admin/products/:id" element={<PrivateRoute><ProductForm /></PrivateRoute>} /> {/* Untuk edit produk */}
-          
+          <Route path="/admin/reviews" element={<PrivateRoute><Reviews /></PrivateRoute>} />
+
 
           {/* Fallback Route: Jika tidak ada rute yang cocok, arahkan ke HomePage */}
           {/* Pastikan ini adalah rute terakhir */}

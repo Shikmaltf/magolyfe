@@ -10,6 +10,7 @@ const articleRoutesForAdmin = require('./routes/articleRoutes');
 const articleRoutesForPublic = require('./routes/articleRoutes');
 const productRoutesForAdmin = require('./routes/productRoutes');
 const productRoutesForPublic = require('./routes/productRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 
 const multer = require('multer');
@@ -35,6 +36,7 @@ app.use('/api/articles', articleRoutesForPublic);
 app.use('/api/admin/articles', articleRoutesForAdmin);
 app.use('/api/products', productRoutesForPublic);
 app.use('/api/admin/products', productRoutesForAdmin);
+app.use('/api/reviews', reviewRoutes);
 
 
 // Penanganan Error Global

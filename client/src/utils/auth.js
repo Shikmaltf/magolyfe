@@ -1,6 +1,13 @@
-// src/utils/auth.js
 import { jwtDecode } from 'jwt-decode';
 // import api from './config/axios'; // Uncomment jika Anda ingin menghapus header default Axios di sini
+
+/**
+ * Mengambil token dari localStorage.
+ * @returns {string|null} Token JWT atau null jika tidak ditemukan.
+ */
+export const getToken = () => {
+  return localStorage.getItem('token');
+};
 
 /**
  * Mendekode token JWT untuk mendapatkan payload-nya.
