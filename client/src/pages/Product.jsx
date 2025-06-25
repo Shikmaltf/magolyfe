@@ -213,15 +213,17 @@ const Product = () => {
                     <div className="my-6">
                       <h4 className="text-xl font-semibold text-gray-800 mb-3">Video Terkait:</h4>
                       <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
-                        <iframe
-                          className="w-full h-full"
-                          src={`https://www.youtube.com/embed/${selectedProduct.youtubeVideoId}`}
-                          title={selectedProduct.name || 'Video Produk'}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          referrerPolicy="strict-origin-when-cross-origin"
-                          allowFullScreen
-                        ></iframe>
+                        <div className="aspect-video rounded-lg overflow-hidden shadow-lg">  
+                          <iframe
+                            className="w-full h-full"
+                            src={`https://www.youtube.com/embed/${selectedProduct.youtubeVideoId}`}
+                            title={selectedProduct.name || 'Video Produk'}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen>
+                          </iframe>
+                        </div>  
                       </div>
                     </div>
                   )}

@@ -353,14 +353,16 @@ const ProductForm = () => {
                 <div className="mt-4">
                     <p className="text-sm text-gray-600 mb-2">Pratinjau Video:</p>
                     <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow"> {/* Ensure aspect ratio Tailwind plugin is setup */}
-                    <iframe
-                        className="w-full h-full"
-                        src={`https://www.youtube.com/embed/${getYouTubeVideoId(youtubeUrl)}`}
-                        title="Pratinjau Video YouTube Produk"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
+                      <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
+                        <iframe
+                            className="w-full h-full"
+                            src={`https://www.youtube.com/embed/${getYouTubeVideoId(youtubeUrl)}`}
+                            title="Pratinjau Video YouTube Produk"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
+                      </div>
                     </div>
                 </div>
             )}
