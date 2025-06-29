@@ -36,10 +36,32 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const closeMobileMenu = () => {
+    if(isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+    }
+  }
+
   const navLinkClasses = "hover:text-green-200 transition duration-200 font-medium block py-2 md:py-0 md:inline-block";
   const adminButtonContainerClasses = "flex items-center space-x-4 mt-4 md:mt-0";
   const loginButtonClasses = "bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition duration-200 font-medium block w-full text-center md:w-auto md:inline-block mt-4 md:mt-0";
 
+  // Custom NavLink component to handle active state
+  const NavLink = ({ to, children, className }) => {
+    const isActive = location.pathname === to;
+    return (
+      <Link
+        to={to}
+        className={`
+          ${className}
+          ${isActive ? "text-green-300 font-semibold border-b-2 border-green-300" : ""}
+        `}
+        onClick={() => setIsMobileMenuOpen(false)}
+      >
+        {children}
+      </Link>
+    );
+  };
 
   return (
     <nav className="bg-green-800 text-white shadow-lg">
@@ -72,15 +94,15 @@ const Navbar = () => {
 
           {/* Desktop Menu Links */}
           <div className="hidden md:flex space-x-6 items-center">
-            <Link to="/" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Beranda</Link>
-            <Link to="/education" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Edukasi</Link>
-            <Link to="/gallery" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Galeri</Link>
-            <Link to="/product" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Produk</Link>
-            <Link to="/about" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Tentang</Link>
-            <Link to="/contact" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Kontak</Link>
+            <NavLink to="/" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Beranda</NavLink>
+            <NavLink to="/education" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Edukasi</NavLink>
+            <NavLink to="/gallery" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Galeri</NavLink>
+            <NavLink to="/product" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Produk</NavLink>
+            <NavLink to="/about" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Tentang</NavLink>
+            <NavLink to="/contact" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Kontak</NavLink>
             {isAdmin ? (
               <div className={adminButtonContainerClasses.replace('mt-4', '').replace('md:mt-0', '')}>
-                <Link to="/admin" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Admin</Link>
+                <NavLink to="/admin" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Admin</NavLink>
                 <button
                   onClick={handleLogoutClick}
                   className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition duration-200"
@@ -93,11 +115,13 @@ const Navbar = () => {
                 to="/login"
                 className={loginButtonClasses.replace('block', 'inline-block').replace('w-full', 'w-auto').replace('text-center', '').replace('mt-4', '').replace('md:mt-0', '')}
               >
-                Login
+                Admin
               </Link>
             )}
           </div>
         </div>
+
+
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
@@ -124,7 +148,7 @@ const Navbar = () => {
                 className={loginButtonClasses}
                 onClick={toggleMobileMenu}
               >
-                Login
+                Admin
               </Link>
             )}
           </div>

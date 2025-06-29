@@ -150,7 +150,7 @@ const Product = () => {
                             href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Saya ingin membeli ${product.name}, apakah masih tersedia?`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg shadow hover:shadow-md transition-all text-sm text-center"
+                            className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg shadow hover:shadow-md transition-all text-sm text-center"
                         >
                             Beli
                         </a>

@@ -105,7 +105,7 @@ const About = () => {
             to="/contact"
             className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block"
           >
-            Hubungi Kami Jika Ada Pertanyaan
+            Hubungi Kami
           </Link>
         </footer>
       </div>
