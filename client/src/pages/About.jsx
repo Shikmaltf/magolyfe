@@ -32,7 +32,7 @@ const About = () => {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="mb-12 text-center">
-          <img src="/logo2.png" alt="Logo" className="mx-auto h-48 w-48" />
+          <img src="/logo-mago.png" alt="Logo" className="mx-auto h-48 w-48" />
           <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 mb-3">
             Tentang <span className="text-lime-600">Magolyfe</span>
           </h1>
@@ -41,11 +41,13 @@ const About = () => {
           </p>
         </header>
 
-        {/* Sejarah Singkat atau Filosofi */}
+        {/* Tentang KSM Watesa */}
         <section className="mb-12 bg-white p-8 rounded-xl shadow-lg">
+          
           <h2 className="text-2xl font-bold text-green-700 mb-4 flex items-center">
-            <Eye size={28} className="mr-3 text-lime-500" />
-            Filosofi Kami
+            <img src="/logo2.png" alt="Logo" className="h-10 w-10 mr-3 text-lime-500" />
+            
+            KSM Watesa Jamaras 02
           </h2>
           <p className="text-gray-700 mb-4 leading-relaxed">
             Kelompok Swadaya Masyarakat WATESA (Wanita Tenaga Sisa) Jamaras 02 atau KSM Watesa Jamaras 02 yang berasal dari RW 02 Jamaras, Kelurahan Jatihandap. Sejak 2021, kami telah berjibaku dalam kegiatan kemasyarakatan yang semata-mata kami lakukan hanya untuk kebaikan bersama dan kebersihan lingkungan sekitar. Mulai dari penyusunan sistem pengelolaan sampah, sosialisasi pemilahan sampah, hingga proses pengolahan sampah organik secara mandiri yang kami lakukan di RW 02 Jamaras.          </p>

@@ -67,10 +67,18 @@ const Navbar = () => {
     <nav className="bg-green-800 text-white shadow-lg">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
-          {/* Branding or Logo can go here if needed */}
-          <Link to="/" className="text-xl font-bold hover:text-green-200" onClick={() => setIsMobileMenuOpen(false)}>
-            Magolyfe
-          </Link>
+          {/* Branding or Logo */}
+          <Link
+              to="/"
+              className="flex items-center space-x-2 text-xl font-bold hover:text-green-200"
+              onClick={() => setIsMobileMenuOpen(false)}>
+              <img
+                src="logo-mago.png"
+                alt="Magolyfe Logo"
+                className="h-10 w-10"
+              />
+              <span>Magolyfe</span>
+            </Link>
 
           {/* Hamburger Button for Mobile */}
           <div className="md:hidden">
