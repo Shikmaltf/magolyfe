@@ -22,7 +22,7 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="py-20 md:py-32 text-center bg-cover bg-center" style={{ backgroundImage: "url('/banner.jpg')" }}> {/* Placeholder image */}
         <div className="container mx-auto px-6 bg-black bg-opacity-60 py-10 rounded-xl md:max-w-3xl"> {/* Increased opacity for better text readability */}
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6">
+          <h1 className="font-poppins text-4xl md:text-6xl font-extrabold text-white mb-6">
             Selamat Datang di <span className="text-lime-300">Magolyfe</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
@@ -32,13 +32,13 @@ const HomePage = () => {
           <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 justify-center">
             <Link
               to="/education"
-              className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block text-lg w-full sm:w-auto" // Added w-full sm:w-auto
+              className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block text-lg w-full sm:w-auto" // Added w-full sm:w-auto
             >
               Mulai Belajar
             </Link>
             <Link
               to="/product"
-              className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block text-lg w-full sm:w-auto" // Added w-full sm:w-auto
+              className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block text-lg w-full sm:w-auto" // Added w-full sm:w-auto
             >
               Lihat Produk
             </Link>
@@ -91,7 +91,7 @@ const HomePage = () => {
           </p>
           <Link
             to="/gallery"
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block text-lg"
+            className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block text-lg"
           >
             Lihat Galeri Kami
           </Link>

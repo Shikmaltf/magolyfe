@@ -12,6 +12,9 @@ module.exports = {
         lime: '#859F3D',
         pale: '#F6FCDF',
       },
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [],
