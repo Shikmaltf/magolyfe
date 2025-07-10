@@ -30,11 +30,11 @@ const About = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
+        {/* magolyfe */}
         <header className="mb-12 text-center">
           <img src="/mago-utama.png" alt="Logo" className="mx-auto h-48 w-48" />
           <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 mb-3">
-            Tentang <span className="text-lime-600">Magolyfe</span>
+          <span className="text-lime-600"> Tentang Magolyfe</span>
           </h1>
           <section className="mb-12 bg-white p-8 rounded-xl shadow-lg">
           <p className="text-gray-700 mb-4 leading-relaxed">
@@ -47,7 +47,7 @@ const About = () => {
         <header className="mb-12 text-center">
           <img src="/logo2.png" alt="Logo" className="mx-auto h-48 w-48" />
           <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 mb-3">
-          <span className="text-lime-600">KSM Watesan Jamaras 02</span>
+          <span className="text-lime-600">KSM Watesa Jamaras 02</span>
           </h1>
           <section className="mb-12 bg-white p-8 rounded-xl shadow-lg">
             <p className="text-gray-700 mb-4 leading-relaxed">

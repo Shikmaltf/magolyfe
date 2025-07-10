@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 // Komponen Umum
 import Navbar from './components/Navbar';
+import Footer from './components/FooterMago'; 
 import PrivateRoute from './components/PrivateRoute'; // Komponen untuk rute privat
 
 // Halaman Publik
@@ -69,6 +70,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+      <Footer /> 
     </Router>
   );
 }
