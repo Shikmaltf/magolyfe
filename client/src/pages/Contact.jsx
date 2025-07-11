@@ -194,7 +194,7 @@ const Contact = () => {
     const [reviews, setReviews] = useState([]);
     const [loadingReviews, setLoadingReviews] = useState(true);
 
-    const whatsappNumber = process.env.VITE_WHATSAPP_NUMBER;
+    const whatsappNumber = process.env.REACT_APP_WHATSAPP_NUMBER;
 
     useEffect(() => {
         const fetchReviews = async () => {
@@ -299,7 +299,7 @@ const Contact = () => {
                         </ContactInfoItem>
                         <hr className="border-green-200"/>
                         <ContactInfoItem icon={<Phone size={20} />} title="Telepon">
-                            <a href="tel:+62212345678" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">+62 895-2468-5375</a>
+                            <a href="tel:6289524685375" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">+62 895-2468-5375</a>
                         </ContactInfoItem>
                         <hr className="border-green-200"/>
                         <ContactInfoItem icon={<InstagramIcon size={20} />} title="Instagram">
