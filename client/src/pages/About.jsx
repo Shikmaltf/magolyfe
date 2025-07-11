@@ -38,8 +38,14 @@ const About = () => {
           </h1>
           <section className="mb-12 bg-white p-8 rounded-xl shadow-lg">
           <p className="text-gray-700 mb-4 leading-relaxed">
-            Mengenal lebih dekat siapa kami, apa yang kami lakukan, dan mengapa kami bersemangat tentang solusi alami untuk kehidupan yang lebih baik.
-          </p>
+            Magolyfe adalah platform yang dibuat sebagai media edukasi pengolahan limbah organik menggunakan Maggot BSF. 
+            Platform ini dibuat sebagai salah satu bentuk kepedulian terhadap permasalahan sampah yang menumpuk di TPA 
+            (Tempat Pembuangan Akhir) yang daya tampungnya semakin mengkhawatirkan.
+            Magolyfe menyediakan media edukasi yang bekerja sama dengan komunitas pegiat lingkungan, KSM Watesa Jamaras 02,
+            yang berlokasi di Kota Bandung. Komunitas ini berfokus pada pengolahan limbah organik di lingkungannya. Untuk itu,
+            KSM Watesa Jamaras 02 telah melalui proses pembelajaran dengan para ahli terkait di lingkungannya.
+            Besar harapan Magolyfe dapat menjadi salah satu sumber edukasi terpercaya bagi masyarakat di manapun
+            untuk bisa terus memelihara lingkungan tempat tinggal kita semua.  </p>
           </section>
         </header>
 
