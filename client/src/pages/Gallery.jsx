@@ -184,8 +184,7 @@ const Gallery = () => {
 
             {selectedArticle.youtubeVideoId && (
               <div className="my-6">
-                <h4 className="text-xl font-semibold text-gray-800 mb-3">Video Terkait:</h4>
-                <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
+                <h4 className="text-xl font-semibold text-gray-800 mb-3">Video Terkait:</h4>                
                   <div className="aspect-video rounded-lg overflow-hidden shadow-lg">  
                     <iframe
                       className="w-full h-full"
@@ -197,7 +196,6 @@ const Gallery = () => {
                       allowFullScreen>
                     </iframe>
                   </div>
-                </div>
               </div>
             )}
 

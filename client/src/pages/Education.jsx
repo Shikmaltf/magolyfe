@@ -2,26 +2,26 @@
 import React from 'react';
 import { PlayCircle, BookOpen, Users, Zap } from 'lucide-react'; // Menggunakan ikon dari Lucide
 
-// Daftar video edukasi (ganti dengan ID video YouTube yang relevan)
+// Daftar video edukasi
 const educationVideos = [
   {
     id: '1', // ID unik untuk key
-    title: 'Panduan Lengkap Budidaya Maggot BSF untuk Pemula',
-    videoId: 'wus8-Fkk_s8', // Contoh ID video YouTube (Rick Astley - Never Gonna Give You Up)
-    description: 'Pelajari dasar-dasar budidaya maggot Black Soldier Fly (BSF) dari persiapan hingga panen. Cocok untuk Anda yang baru memulai.',
+    title: '(Bagian 1) Mengenal Maggot BSF dan Budidayanya',
+    videoId: 'IOuZviTatyI', // ID video YouTube 
+    description: 'Ayo mengenal Maggot BSF dan budidayanya!',
   },
   {
     id: '2',
-    title: 'Manajemen Pakan dan Media Tumbuh Maggot Berkualitas',
-    videoId: 'wus8-Fkk_s8', // Contoh ID video YouTube (Another placeholder)
-    description: 'Tips memilih pakan organik dan mengelola media tumbuh agar maggot berkembang optimal dan berkualitas tinggi.',
+    title: '(Bagian 2) Pengolahan Limbah Organik Menggunakan Maggot BSF',
+    videoId: 'zN9Wg6G_NSg', // ID video YouTube
+    description: 'Mari simak proses pengolahan limbah organik menggunakan Maggot BSF, Sang robot organik!',
   },
 ];
 
 // Komponen untuk menampilkan satu item video
 const VideoItem = ({ title, videoId, description }) => (
   <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-    <div className="aspect-w-16 aspect-h-9">
+    <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
       <iframe
         className="w-full h-full"
         src={`https://www.youtube.com/embed/${videoId}`}
