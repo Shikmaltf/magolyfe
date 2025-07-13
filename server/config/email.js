@@ -17,7 +17,7 @@ const sendEmail = async (options) => {
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST, // Host server SMTP (misal: smtp.gmail.com, smtp.mailtrap.io)
     port: process.env.EMAIL_PORT, // Port server SMTP (misal: 587 untuk TLS, 465 untuk SSL, 2525 untuk Mailtrap)
-    secure: flase, // true jika port 465 (SSL), false untuk port lain (biasanya STARTTLS)
+    secure: false, // true jika port 465 (SSL), false untuk port lain (biasanya STARTTLS)
     auth: {
       user: process.env.EMAIL_USERNAME, // Username untuk autentikasi ke server email
       pass: process.env.EMAIL_PASSWORD, // Password untuk autentikasi ke server email
