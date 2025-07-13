@@ -10,10 +10,7 @@ async function createAdmin() {
     await mongoose.connect(process.env.MONGO_URI);
 
     const username = 'admin';
-    const plainPassword = 'watesa02';
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(plainPassword, 10);
+    const plainPassword = 'admin123';
 
     // Cek apakah admin sudah ada
     const existingAdmin = await Admin.findOne({ username });
@@ -25,7 +22,7 @@ async function createAdmin() {
     // Buat admin baru
     const admin = new Admin({
       username,
-      password: hashedPassword,
+      password: plainPassword,
     });
 
     await admin.save();
