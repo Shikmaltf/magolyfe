@@ -307,7 +307,7 @@ const Contact = () => {
                         </ContactInfoItem>
                         <hr className="border-green-200"/>
                         <ContactInfoItem icon={<Mail size={20} />} title="Email">
-                            <a href="mailto:info@magolyfe.com" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">info@magolyfe.com</a>
+                            <a href="mailto:ksmwatesa.jamaras02@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">ksmwatesa.jamaras02@gmail.com</a>
                         </ContactInfoItem>
                     </div>
                 </div>

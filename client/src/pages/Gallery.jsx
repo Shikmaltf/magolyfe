@@ -12,15 +12,12 @@ const Gallery = () => {
   const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
-    console.log('Gallery.jsx: Fetching articles from API_BASE_URL:', API_BASE_URL);
     api.get('/api/articles')
       .then(res => {
-        console.log('Gallery.jsx: Articles fetched successfully:', res.data);
         setArticles(res.data);
         setLoading(false);
       })
       .catch(err => {
-        console.error("Gallery.jsx: Error fetching articles for gallery:", err);
         setError('Tidak dapat memuat artikel saat ini. Silakan coba lagi nanti.');
         setLoading(false);
       });
@@ -100,7 +97,6 @@ const Gallery = () => {
                         alt={article.title || 'Gambar Artikel'}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                         onError={(e) => {
-                          console.error(`Gallery.jsx: Error loading image for article ${article._id}:`, imageUrl, e);
                           e.target.alt = 'Gagal memuat gambar artikel';
                           // e.target.src = 'https://placehold.co/600x400/EEE/CCC?text=Gagal+Muat'; // Placeholder
                         }}

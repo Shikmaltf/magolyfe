@@ -13,16 +13,13 @@ const Product = () => {
   const whatsappNumber = process.env.REACT_APP_WHATSAPP_NUMBER;
 
   useEffect(() => {
-    console.log('Product.jsx: Fetching products from API_BASE_URL:', API_BASE_URL);
     // Pastikan backend mengirim 'updatedAt' untuk setiap produk
     api.get('/api/products')
       .then(res => {
-        console.log('Product.jsx: Products fetched successfully:', res.data);
         setProducts(res.data);
         setLoading(false);
       })
       .catch(err => {
-        console.error("Product.jsx: Error fetching products:", err);
         setError('Tidak dapat memuat produk saat ini. Silakan coba lagi nanti.');
         setLoading(false);
       });
@@ -86,7 +83,6 @@ const Product = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
             {products.map(product => {
-              console.log('Product.jsx: Processing product:', { id: product._id, hasImage: product.hasImage, name: product.name, updatedAt: product.updatedAt });
               let imageUrl = '';
               if (product.hasImage) {
                 const baseUrl = `${API_BASE_URL}/api/products/${product._id}/image`;
@@ -96,15 +92,12 @@ const Product = () => {
                     imageUrl = `${baseUrl}?v=${timestamp}`;
                   } else {
                     imageUrl = baseUrl;
-                    console.warn(`Product.jsx: Invalid updatedAt for product ${product._id}, using URL without versioning.`);
                   }
                 } else {
                   imageUrl = baseUrl;
-                  console.warn(`Product.jsx: Missing updatedAt for product ${product._id}, using URL without versioning.`);
                 }
               }
               if(product.hasImage && imageUrl) {
-                  console.log('Product.jsx: Constructed Image URL:', imageUrl);
               }
 
               return (
@@ -116,7 +109,6 @@ const Product = () => {
                           alt={product.name || 'Gambar Produk'}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           onError={(e) => {
-                            console.error(`Product.jsx: Error loading image for product ${product._id}:`, imageUrl, e);
                             e.target.alt = 'Gagal memuat gambar produk';
                             // e.target.src = 'https://placehold.co/600x400/EEE/CCC?text=Gagal+Muat';
                           }}
