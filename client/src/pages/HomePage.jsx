@@ -20,7 +20,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-lime-50 via-green-50 to-emerald-100">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 text-center bg-cover bg-center" style={{ backgroundImage: "url('/banner4.png')" }}> {/* Placeholder image */}
+      <section className="py-20 md:py-32 text-center bg-cover bg-center" style={{ backgroundImage: "url('/banner4.jpg')" }}> {/* Placeholder image */}
         <div className="container mx-auto px-6 bg-black bg-opacity-60 py-10 rounded-xl md:max-w-3xl"> {/* Increased opacity for better text readability */}
           <h1 className="font-poppins text-4xl md:text-6xl font-extrabold text-white mb-6">
             Selamat Datang di <span className="text-lime-300">Magolyfe</span>
