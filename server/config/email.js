@@ -17,10 +17,13 @@ const sendEmail = async (options) => {
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST, // Host server SMTP (misal: smtp.gmail.com, smtp.mailtrap.io)
     port: process.env.EMAIL_PORT, // Port server SMTP (misal: 587 untuk TLS, 465 untuk SSL, 2525 untuk Mailtrap)
-    secure: process.env.EMAIL_PORT === '465', // true jika port 465 (SSL), false untuk port lain (biasanya STARTTLS)
+    secure: flase, // true jika port 465 (SSL), false untuk port lain (biasanya STARTTLS)
     auth: {
       user: process.env.EMAIL_USERNAME, // Username untuk autentikasi ke server email
       pass: process.env.EMAIL_PASSWORD, // Password untuk autentikasi ke server email
+    },
+    tls: {
+      rejectUnauthorized: false, // opsional, untuk menghindari error self-signed cert
     },
     // Untuk layanan seperti Gmail, Anda mungkin perlu:
     // - Mengaktifkan "Less secure app access" (tidak direkomendasikan untuk produksi)
