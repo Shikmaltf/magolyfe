@@ -9,11 +9,14 @@ const api = axios.create({
 // Request interceptor
 api.interceptors.request.use(
   config => {
+    if (config.url.includes('/api/admin/login')) {
+      return config;
+    }
+
     const token = localStorage.getItem('token');
     if (token) {
       if (!isTokenStillValid()) {
-        // console.warn('Client-side check: Token expired. Logging out before sending request.');
-        if (window.location.pathname !== '/login') { // Ganti '/login' jika path halaman login Anda berbeda
+        if (window.location.pathname !== '/login') {
           performLogout('/login'); 
         }
         return Promise.reject(new Error('Token expired. Request cancelled by client.'));
@@ -22,9 +25,7 @@ api.interceptors.request.use(
     }
     return config;
   },
-  error => {
-    return Promise.reject(error);
-  }
+  error => Promise.reject(error)
 );
 
 // Response interceptor
