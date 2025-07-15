@@ -39,11 +39,20 @@ const VideoItem = ({ title, videoId, description }) => (
 );
 
 // Komponen untuk menampilkan kartu informasi tambahan
-const InfoCard = ({ icon, title, text }) => (
-  <div className="bg-green-50 p-6 rounded-lg shadow-md flex items-start space-x-4">
-    <div className="text-green-600">{icon}</div>
-    <div>
-      <h3 className="text-lg font-semibold text-green-800 mb-1">{title}</h3>
+const InfoCard = ({ icon, title, text, image }) => (
+  <div className="bg-green-50 rounded-lg shadow-md overflow-hidden flex">
+    {image && (
+      <img
+        src={image}
+        alt={title}
+        className="w-48 h-auto object-cover"
+      />
+    )}
+    <div className="p-6 flex flex-col justify-start space-y-2">
+      <div className="flex items-center space-x-2">
+        <div className="text-green-600">{icon}</div>
+        <h3 className="font-semibold text-green-800">{title}</h3>
+      </div>
       <p className="text-gray-700 text-sm">{text}</p>
     </div>
   </div>
@@ -56,13 +65,10 @@ const Education = () => {
         {/* Header Halaman */}
         <header className="mb-12 text-center">
           <BookOpen className="mx-auto text-green-600 h-16 w-16 mb-4" />
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 mb-3">
-            Pusat Edukasi Budidaya Maggot BSF
+          <h1 className="text-5xl font-extrabold text-green-800 mb-3">
+            Pusat Edukasi Pengolahan Limbah Organik dengan Maggot BSF
           </h1>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Temukan panduan lengkap, tips, dan trik sukses beternak maggot Black Soldier Fly (BSF) untuk solusi pakan alternatif dan pengelolaan sampah organik yang berkelanjutan.
-          </p>
-        </header>
+          </header>
 
         {/* Pengantar Singkat */}
         <section className="mb-12 bg-white p-8 rounded-xl shadow-lg">
@@ -75,22 +81,22 @@ const Education = () => {
           </p>
           <div className="grid md:grid-cols-2 gap-6">
             <InfoCard 
-              icon={<PlayCircle size={32} />}
+              image={"ayam.jpeg"}
               title="Solusi Pakan Bergizi"
               text="Maggot kaya akan protein dan lemak, ideal sebagai pakan alami untuk unggas, ikan, dan reptil, meningkatkan pertumbuhan dan kesehatan ternak."
             />
             <InfoCard
-              icon={<Users size={32} />}
+              image={"magotmakan.jpeg"}
               title="Pengelolaan Sampah Efektif"
               text="Satu kilogram larva BSF dapat mengurai hingga 1-2 kg sampah organik per hari, mengurangi limbah rumah tangga dan pasar secara signifikan."
             />
              <InfoCard 
-              icon={<BookOpen size={32} />}
-              title="Pupuk Organik Berkualitas"
-              text="Sisa media budidaya (kasgot) dan kotoran maggot merupakan pupuk organik padat dan cair yang sangat baik untuk kesuburan tanah."
+              image={"kasgot.jpg"}
+              title="Pupuk Kasgot Berkualitas"
+              text="kotoran maggot (kasgot) merupakan pupuk organik padat yang sangat baik untuk kesuburan tanah."
             />
             <InfoCard
-              icon={<Zap size={32} />}
+              image={"ayam.jpeg"}
               title="Ramah Lingkungan & Berkelanjutan"
               text="Budidaya maggot mengurangi emisi gas metana dari sampah, tidak berbau, dan mendukung ekonomi sirkular."
             />
@@ -122,16 +128,22 @@ const Education = () => {
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <h3 className="text-xl font-semibold text-green-800 mb-2">Jaga Kelembaban</h3>
-                    <p className="text-gray-600 text-sm">Pastikan media budidaya tidak terlalu kering atau terlalu basah. Kelembaban ideal sekitar 60-70%.</p>
+                    <h3 className="text-xl font-semibold text-green-800 mb-2 text-center">Jaga Kelembaban</h3>
+                    <img 
+                        src="Lembap.png"></img> 
+                    <p className="text-gray-600 text-sm mt-3">Pastikan media budidaya tidak terlalu kering atau terlalu basah. Kelembaban ideal sekitar 60-70%.</p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <h3 className="text-xl font-semibold text-green-800 mb-2">Ventilasi Baik</h3>
-                    <p className="text-gray-600 text-sm">Sirkulasi udara yang baik penting untuk mencegah bau dan pertumbuhan jamur yang tidak diinginkan.</p>
+                    <h3 className="text-xl font-semibold text-green-800 mb-2 text-center">Ventilasi Baik</h3>
+                    <img 
+                        src="sirkulasi.png"></img> 
+                    <p className="text-gray-600 text-sm mt-3">Sirkulasi udara yang baik penting untuk mencegah bau dan pertumbuhan jamur yang tidak diinginkan.</p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <h3 className="text-xl font-semibold text-green-800 mb-2">Pakan Bervariasi</h3>
-                    <p className="text-gray-600 text-sm">Berikan pakan organik yang bervariasi seperti sisa buah, sayur, atau ampas tahu untuk nutrisi optimal.</p>
+                    <h3 className="text-xl font-semibold text-green-800 mb-2 text-center">Pakan Bervariasi</h3>
+                    <img 
+                        src="sayurbuah.png"></img> 
+                    <p className="text-gray-600 text-sm mt-3">Berikan pakan organik yang bervariasi seperti sisa buah, sayur, atau ampas tahu untuk nutrisi optimal.</p>
                 </div>
             </div>
         </section>
