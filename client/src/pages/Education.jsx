@@ -1,6 +1,6 @@
 // frontend/src/pages/Education.jsx
 import React from 'react';
-import { PlayCircle, BookOpen, Users, Zap } from 'lucide-react'; // Menggunakan ikon dari Lucide
+import { PlayCircle, BookOpen, Users, Zap, Book, BookOpenCheck } from 'lucide-react'; // Menggunakan ikon dari Lucide
 
 // Daftar video edukasi
 const educationVideos = [
@@ -45,7 +45,7 @@ const InfoCard = ({ icon, title, text, image }) => (
       <img
         src={image}
         alt={title}
-        className="w-40 h-40 object-cover"
+        className="w-48 h-auto object-cover"
       />
     )}
     <div className="p-6 flex flex-col justify-start space-y-2">
@@ -60,7 +60,7 @@ const InfoCard = ({ icon, title, text, image }) => (
 
 const Education = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-100 via-lime-50 to-emerald-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-green-100 via-lime-50 to-emerald-100 py-8 px-4 sm:px-6 lg:px-8 ">
       <div className="max-w-6xl mx-auto">
         {/* Header Halaman */}
         <header className="mb-12 text-center">
@@ -88,12 +88,12 @@ const Education = () => {
             <InfoCard
               image={"magotmakan.jpeg"}
               title="Pengelolaan Sampah Efektif"
-              text="Satu kilogram larva BSF dapat mengurai hingga 1-2 kg sampah organik per hari, mengurangi limbah rumah tangga dan pasar secara signifikan."
+              text="Satu kilogram larva BSF dapat mengurai hingga 1-3 kg sampah organik per hari, mengurangi limbah rumah tangga dan pasar secara signifikan."
             />
              <InfoCard 
               image={"kasgot.jpg"}
-              title="Pupuk Kasgot Berkualitas"
-              text="kotoran maggot (kasgot) merupakan pupuk organik padat yang sangat baik untuk kesuburan tanah."
+              title="Pemanfaatan Pupuk Kasgot"
+              text="kotoran maggot (kasgot) merupakan pupuk organik padat yang baik untuk kesuburan tanah."
             />
             <InfoCard
               image={"ayam.jpeg"}
@@ -146,6 +146,30 @@ const Education = () => {
                     <p className="text-gray-600 text-sm mt-3">Berikan pakan organik yang bervariasi seperti sisa buah, sayur, atau ampas tahu untuk nutrisi optimal.</p>
                 </div>
             </div>
+        </section>
+        <section className="mb-12 bg-white p-8 rounded-xl shadow-lg">
+          <h2 className="text-xl font-bold text-green-700 mb-4 flex items-center">
+            <BookOpenCheck size={28} className="mr-3 text-yellow-500" />
+            Sumber Referensi
+          </h2>
+          <a href="https://www.academia.edu/download/105653248/12360.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
+            Jurnal: KANDUNGAN NUTRISI KASGOT  LARVA LALAT  TENTARA  HITAM  (Hermetia illucensi) SEBAGAI PUPUK ORGANIK<br/>
+          </a>
+          <a href="https://ejournal.warmadewa.ac.id/index.php/wicaksana/article/view/11591" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
+            Jurnal: Pemanfaatan Budidaya Maggot Sebagai Pengelolaan Limbah Dapur Bernilai Ekonomis<br/>
+          </a>
+          <a href="https://e-journal.unmas.ac.id/index.php/jitumas/article/view/8965" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
+            Jurnal: TEKNOLOGI PENGELOLAAN SAMPAH ORGANIK MENGGUNAKAN LARVA BLACK SOLDIER FLY DI TPS3R<br/>
+          </a>
+          <a href="https://repository.umpar.ac.id/id/eprint/2207/1/eBook%20Reduksi%20Sampah%20Organik%20Budi%20Daya%20Magot.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
+            E-Book: REDUKSI SAMPAH ORGANIK: BUDI DAYA MAGOT<br/>
+          </a>
+          <a href="https://ejournal.stebisigm.ac.id/index.php/AKM/article/view/650" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
+            Jurnal: Pelatihan Pengembangan Maggot sebagai Pakan Ternak di Desa Karang Tunggal, Kec  Parenggean sebagai Model Kewirausahaan Sosial  Masyarakat<br/>
+          </a>
+          <a href="https://jstl.unram.ac.id/index.php/jstl/article/view/422" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
+            Jurnal: Kualitas Fisik dan Kimiawi Maggot BSF yang Dibudidaya  Oleh Peternak Menggunakan Media Pakan yang Berbeda<br/>
+          </a>
         </section>
 
         {/* Call to Action atau Link Terkait */}

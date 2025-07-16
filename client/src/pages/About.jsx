@@ -21,7 +21,7 @@ const TeamMemberCard = ({ name, role, imageUrl, bio }) => (
 const About = () => {
   // Data tim 
   const teamMembers = [
-    { name: 'Sayyidah Hikma Lutfiyana', role: 'Pengembang Platform', imageUrl: 'https://placehold.co/150x150/34D399/065F46?text=SHL&font=roboto', bio: 'Bertanggung jawab atas pengembangan teknologi dan pengalaman pengguna di Magolyfe.' },
+    { name: 'Sayyidah Hikma Lutfiyana', role: 'Pengembang Platform', imageUrl: 'shl4.jpg', bio: 'Bertanggung jawab atas pengembangan teknologi dan pengalaman pengguna di Magolyfe.' },
     { name: 'KSM Watesa Jamaras 02', role: 'Kolaborator', imageUrl: '/logo.png', bio: 'Komunitas penggerak yang memfasilitasi pengembang dalam hal materi edukasi' },
 
   ];
@@ -50,19 +50,40 @@ const About = () => {
         </header>
 
         {/* ksm */}
-        <header className="mb-12 text-center">
-          <img src="/logo2.png" alt="Logo" className="mx-auto h-48 w-48" />
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 mb-3">
-          <span className="text-lime-600">KSM Watesa Jamaras 02</span>
-          </h1>
-          <section className="mb-12 bg-white p-8 rounded-xl shadow-lg">
-            <p className="text-gray-700 mb-4 leading-relaxed">
-              Kelompok Swadaya Masyarakat WATESA (Wanita Tenaga Sisa) Jamaras 02 atau KSM Watesa Jamaras 02 yang berasal dari RW 02 Jamaras, Kelurahan Jatihandap. Sejak 2021, KSM Watesa Jamaras 02 telah berjibaku dalam kegiatan kemasyarakatan yang semata-mata dilakukan hanya untuk kebaikan bersama dan kebersihan lingkungan sekitar. Mulai dari penyusunan sistem pengelolaan sampah, sosialisasi pemilahan sampah, hingga proses pengolahan sampah organik secara mandiri yang kami lakukan di RW 02 Jamaras.          </p>
-            <p className="text-gray-700 leading-relaxed">
-              KSM Watesa Jamaras 02 berkomitmen untuk menyediakan informasi yang akurat, edukasi yang memberdayakan, dan produk berkualitas tinggi yang berasal dari sumber alami dan diproses secara bertanggung jawab.
-            </p>
+         <div className="mb-12">
+          <header className="text-center">
+            <img src="/logo2.png" alt="[Logo KSM Watesa Jamaras 02]" className="mx-auto h-48 w-48" />
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 my-3">
+              <span className="text-lime-600">KSM Watesa Jamaras 02</span>
+            </h1>
+          </header>
+          {/* Section dengan gambar dan deskripsi */}
+          <section className="mt-6 bg-white p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-8">
+            {/* Kolom Gambar */}
+            <div className="md:w-1/3 w-full flex-shrink-0">
+              <img 
+                src="tentang2.jpg" 
+                alt="[Kegiatan KSM Watesa Jamaras 02]" 
+                className="shadow-md w-full h-auto object-cover"
+              />
+              <img 
+                src="tentang.jpg" 
+                alt="[Kegiatan KSM Watesa Jamaras 02]" 
+                className="shadow-md w-full h-auto object-cover mt-6"
+                onError={(e) => { e.target.onerror = null; e.target.src=''; }}
+              />
+            </div>
+            {/* Kolom Teks */}
+            <div className="md:w-2/3 w-full">
+              <p className="text-gray-700 mb-4 leading-relaxed text-left">
+                Kelompok Swadaya Masyarakat WATESA (Wanita Tenaga Sisa) Jamaras 02 atau KSM Watesa Jamaras 02 yang berasal dari RW 02 Jamaras, Kelurahan Jatihandap. Sejak 2021, KSM Watesa Jamaras 02 telah berjibaku dalam kegiatan kemasyarakatan yang semata-mata dilakukan hanya untuk kebaikan bersama dan kebersihan lingkungan sekitar. Mulai dari penyusunan sistem pengelolaan sampah, sosialisasi pemilahan sampah, hingga proses pengolahan sampah organik secara mandiri yang kami lakukan di RW 02 Jamaras.
+              </p>
+              <p className="text-gray-700 leading-relaxed text-left">
+                KSM Watesa Jamaras 02 berkomitmen untuk menyediakan informasi yang akurat, edukasi yang memberdayakan, dan produk berkualitas tinggi yang berasal dari sumber alami dan diproses secara bertanggung jawab.
+              </p>
+            </div>
           </section>
-        </header>
+        </div>
 
         {/* Visi & Misi */}
         <section className="mb-12 grid md:grid-cols-2 gap-8">
