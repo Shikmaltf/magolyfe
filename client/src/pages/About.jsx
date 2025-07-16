@@ -19,7 +19,7 @@ const TeamMemberCard = ({ name, role, imageUrl, bio }) => (
 
 
 const About = () => {
-  // Data tim bisa diambil dari API atau didefinisikan di sini jika statis
+  // Data tim 
   const teamMembers = [
     { name: 'Sayyidah Hikma Lutfiyana', role: 'Pengembang Platform', imageUrl: 'https://placehold.co/150x150/34D399/065F46?text=SHL&font=roboto', bio: 'Bertanggung jawab atas pengembangan teknologi dan pengalaman pengguna di Magolyfe.' },
     { name: 'KSM Watesa Jamaras 02', role: 'Kolaborator', imageUrl: '/logo.png', bio: 'Komunitas penggerak yang memfasilitasi pengembang dalam hal materi edukasi' },

@@ -45,7 +45,7 @@ const InfoCard = ({ icon, title, text, image }) => (
       <img
         src={image}
         alt={title}
-        className="w-48 h-auto object-cover"
+        className="w-40 h-40 object-cover"
       />
     )}
     <div className="p-6 flex flex-col justify-start space-y-2">
@@ -130,7 +130,7 @@ const Education = () => {
                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <h3 className="text-xl font-semibold text-green-800 mb-2 text-center">Jaga Kelembaban</h3>
                     <img 
-                        src="Lembap.png"></img> 
+                        src="lembap.png"></img> 
                     <p className="text-gray-600 text-sm mt-3">Pastikan media budidaya tidak terlalu kering atau terlalu basah. Kelembaban ideal sekitar 60-70%.</p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
