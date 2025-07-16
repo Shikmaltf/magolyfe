@@ -39,21 +39,18 @@ const VideoItem = ({ title, videoId, description }) => (
 );
 
 // Komponen untuk menampilkan kartu informasi tambahan
-const InfoCard = ({ icon, title, text, image }) => (
-  <div className="bg-green-50 rounded-lg shadow-md overflow-hidden flex">
+const InfoCard = ({ title, text, image }) => (
+  <div className="bg-green-50 rounded-2xl shadow-md overflow-hidden grid grid-cols-1 md:grid-cols-2">
     {image && (
       <img
         src={image}
         alt={title}
-        className="w-48 h-auto object-cover"
+        className="w-full h-48 md:h-full object-cover"
       />
     )}
-    <div className="p-6 flex flex-col justify-start space-y-2">
-      <div className="flex items-center space-x-2">
-        <div className="text-green-600">{icon}</div>
-        <h3 className="font-semibold text-green-800">{title}</h3>
-      </div>
-      <p className="text-gray-700 text-sm">{text}</p>
+    <div className="p-6 flex flex-col justify-center space-y-3">
+      <h3 className="text-lg font-semibold text-green-800">{title}</h3>
+      <p className="text-gray-700 text-sm leading-relaxed">{text}</p>
     </div>
   </div>
 );
@@ -147,39 +144,83 @@ const Education = () => {
                 </div>
             </div>
         </section>
+        {/* Sumber Referensi */}
         <section className="mb-12 bg-white p-8 rounded-xl shadow-lg">
-          <h2 className="text-xl font-bold text-green-700 mb-4 flex items-center">
+          <h2 className="text-xl font-bold text-green-700 mb-6 flex items-center">
             <BookOpenCheck size={28} className="mr-3 text-yellow-500" />
             Sumber Referensi
           </h2>
-          <a href="https://www.academia.edu/download/105653248/12360.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
-            Jurnal: KANDUNGAN NUTRISI KASGOT  LARVA LALAT  TENTARA  HITAM  (Hermetia illucensi) SEBAGAI PUPUK ORGANIK<br/>
-          </a>
-          <a href="https://ejournal.warmadewa.ac.id/index.php/wicaksana/article/view/11591" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
-            Jurnal: Pemanfaatan Budidaya Maggot Sebagai Pengelolaan Limbah Dapur Bernilai Ekonomis<br/>
-          </a>
-          <a href="https://e-journal.unmas.ac.id/index.php/jitumas/article/view/8965" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
-            Jurnal: TEKNOLOGI PENGELOLAAN SAMPAH ORGANIK MENGGUNAKAN LARVA BLACK SOLDIER FLY DI TPS3R<br/>
-          </a>
-          <a href="https://repository.umpar.ac.id/id/eprint/2207/1/eBook%20Reduksi%20Sampah%20Organik%20Budi%20Daya%20Magot.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
-            E-Book: REDUKSI SAMPAH ORGANIK: BUDI DAYA MAGOT<br/>
-          </a>
-          <a href="https://ejournal.stebisigm.ac.id/index.php/AKM/article/view/650" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
-            Jurnal: Pelatihan Pengembangan Maggot sebagai Pakan Ternak di Desa Karang Tunggal, Kec  Parenggean sebagai Model Kewirausahaan Sosial  Masyarakat<br/>
-          </a>
-          <a href="https://jstl.unram.ac.id/index.php/jstl/article/view/422" target="_blank" rel="noopener noreferrer" className="hover:text-green-700 transition-colors">
-            Jurnal: Kualitas Fisik dan Kimiawi Maggot BSF yang Dibudidaya  Oleh Peternak Menggunakan Media Pakan yang Berbeda<br/>
-          </a>
+          <ul className="list-disc pl-5 space-y-3 text-sm md:text-base text-gray-800">
+            <li>
+              <a
+                href="https://www.academia.edu/download/105653248/12360.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-700 transition-colors"
+              >
+                Jurnal: Kandungan Nutrisi Kasgot Larva Lalat Tentara Hitam (Hermetia illucens) sebagai Pupuk Organik
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://ejournal.warmadewa.ac.id/index.php/wicaksana/article/view/11591"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-700 transition-colors"
+              >
+                Jurnal: Pemanfaatan Budidaya Maggot sebagai Pengelolaan Limbah Dapur Bernilai Ekonomis
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://e-journal.unmas.ac.id/index.php/jitumas/article/view/8965"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-700 transition-colors"
+              >
+                Jurnal: Teknologi Pengelolaan Sampah Organik Menggunakan Larva Black Soldier Fly di TPS3R
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://repository.umpar.ac.id/id/eprint/2207/1/eBook%20Reduksi%20Sampah%20Organik%20Budi%20Daya%20Magot.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-700 transition-colors"
+              >
+                E-Book: Reduksi Sampah Organik: Budi Daya Magot
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://ejournal.stebisigm.ac.id/index.php/AKM/article/view/650"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-700 transition-colors"
+              >
+                Jurnal: Pelatihan Pengembangan Maggot sebagai Pakan Ternak di Desa Karang Tunggal, Kec. Parenggean sebagai Model Kewirausahaan Sosial Masyarakat
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://jstl.unram.ac.id/index.php/jstl/article/view/422"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-700 transition-colors"
+              >
+                Jurnal: Kualitas Fisik dan Kimiawi Maggot BSF yang Dibudidaya oleh Peternak Menggunakan Media Pakan yang Berbeda
+              </a>
+            </li>
+          </ul>
         </section>
 
-        {/* Call to Action atau Link Terkait */}
+        {/* Call to Action */}
         <footer className="mt-16 text-center">
           <p className="text-gray-700 mb-4">
             Tertarik untuk belajar lebih lanjut atau memulai budidaya maggot Anda sendiri? 
           </p>
-          {/* Anda bisa menambahkan link ke halaman kontak, artikel, atau forum diskusi */}
           <a 
-            href="/contact" // Ganti dengan link yang sesuai
+            href="/contact" 
             className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block"
           >
             Hubungi Kami
