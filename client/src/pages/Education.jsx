@@ -93,7 +93,7 @@ const Education = () => {
               text="kotoran maggot (kasgot) merupakan pupuk organik padat yang baik untuk kesuburan tanah."
             />
             <InfoCard
-              image={"ayam.jpeg"}
+              image={"lingkungan.jpeg"}
               title="Ramah Lingkungan & Berkelanjutan"
               text="Budidaya maggot mengurangi emisi gas metana dari sampah, tidak berbau, dan mendukung ekonomi sirkular."
             />
