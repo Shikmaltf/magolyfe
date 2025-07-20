@@ -78,7 +78,7 @@ const Education = () => {
           </p>
           <div className="grid md:grid-cols-2 gap-6">
             <InfoCard 
-              image={"ayam.jpeg"}
+              image={"ayam.jpg"}
               title="Solusi Pakan Bergizi"
               text="Maggot kaya akan protein dan lemak, ideal sebagai pakan alami untuk unggas, ikan, dan reptil, meningkatkan pertumbuhan dan kesehatan ternak."
             />
@@ -88,7 +88,7 @@ const Education = () => {
               text="Satu kilogram larva BSF dapat mengurai hingga 1-3 kg sampah organik per hari, mengurangi limbah rumah tangga dan pasar secara signifikan."
             />
              <InfoCard 
-              image={"kasgot.jpg"}
+              image={"kasgott.jpg"}
               title="Pemanfaatan Pupuk Kasgot"
               text="kotoran maggot (kasgot) merupakan pupuk organik padat yang baik untuk kesuburan tanah."
             />
