@@ -72,11 +72,7 @@ const Navbar = () => {
               to="/"
               className="flex items-center space-x-2 text-xl font-bold hover:text-green-200"
               onClick={() => setIsMobileMenuOpen(false)}>
-              <img
-                src="mago-putih.png"
-                alt="Magolyfe Logo"
-                className="h-10 w-10"
-              />
+              
               <span>Magolyfe</span>
             </Link>
 
@@ -121,9 +117,12 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/login"
-                className={loginButtonClasses.replace('block', 'inline-block').replace('w-full', 'w-auto').replace('text-center', '').replace('mt-4', '').replace('md:mt-0', '')}
               >
-                Admin
+                <img
+                src="mago-putih.png"
+                alt="Magolyfe Logo"
+                className="h-10 w-10"
+              />
               </Link>
             )}
           </div>
@@ -156,7 +155,7 @@ const Navbar = () => {
                 className={loginButtonClasses}
                 onClick={toggleMobileMenu}
               >
-                Admin
+                <img src="ksm.jpg" alt="Admin Icon" className="inline-block h-7 w-7 mr-2" />
               </Link>
             )}
           </div>

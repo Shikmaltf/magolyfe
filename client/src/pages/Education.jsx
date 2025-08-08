@@ -38,7 +38,7 @@ const VideoItem = ({ title, videoId, description }) => (
   </div>
 );
 
-// Komponen untuk menampilkan kartu informasi tambahan
+// Komponen untuk menampilkan kartu tips tambahan
 const InfoCard = ({ title, text, image }) => (
   <div className="bg-green-50 rounded-2xl shadow-md overflow-hidden grid grid-cols-1 md:grid-cols-2">
     {image && (
@@ -67,14 +67,15 @@ const Education = () => {
           </h1>
           </header>
 
-        {/* Pengantar Singkat */}
+        {/* manfaat */}
         <section className="mb-12 bg-white p-8 rounded-xl shadow-lg">
           <h2 className="text-2xl font-bold text-green-700 mb-4 flex items-center">
             <Zap size={28} className="mr-3 text-yellow-500" />
             Mengapa Budidaya Maggot?
           </h2>
           <p className="text-gray-700 mb-4 leading-relaxed">
-            Maggot BSF (Black Soldier Fly) adalah larva lalat tentara hitam yang memiliki potensi luar biasa. Mereka adalah pengurai sampah organik yang sangat efisien, mengubah limbah makanan menjadi biomassa kaya protein. Budidaya maggot tidak hanya membantu mengurangi volume sampah, tetapi juga menghasilkan produk bernilai tinggi seperti pakan ternak (unggas, ikan) dan pupuk organik berkualitas.
+            Maggot BSF (Black Soldier Fly) adalah larva lalat tentara hitam yang memiliki potensi luar biasa. Mereka adalah pengurai sampah organik yang sangat efisien, 
+            mengubah limbah makanan menjadi biomassa kaya protein. Budidaya maggot tidak hanya membantu mengurangi volume sampah, tetapi juga menghasilkan produk bernilai tinggi seperti pakan ternak (unggas, ikan) dan pupuk organik berkualitas.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
             <InfoCard 
@@ -100,7 +101,7 @@ const Education = () => {
           </div>
         </section>
         
-        {/* Daftar Video Edukasi */}
+        {/* Video Edukasi */}
         <section>
           <h2 className="text-3xl font-bold text-green-700 mb-8 text-center flex items-center justify-center">
             <PlayCircle size={36} className="mr-3" />

@@ -139,7 +139,7 @@ const Dashboard = () => {
         {/* Bagian Link Manajemen */}
         <section className="bg-white p-6 sm:p-8 rounded-xl shadow-xl">
           <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-6 text-center border-b pb-4">
-            Akses Cepat Pengelolaan
+            Akses Pengelolaan
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             <Link

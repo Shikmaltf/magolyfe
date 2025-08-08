@@ -7,8 +7,8 @@ const Gallery = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [selectedArticle, setSelectedArticle] = useState(null); // State for the article to show in modal
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [selectedArticle, setSelectedArticle] = useState(null); // Status untuk artikel yang akan ditampilkan pada modal
+  const [isModalOpen, setIsModalOpen] = useState(false); // menyatakan untuk visibilitas modal
   const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
@@ -23,14 +23,14 @@ const Gallery = () => {
       });
   }, [API_BASE_URL]); // Removed API_BASE_URL from dependencies as it's a constant string
 
-  // Function to open the modal
+  // untuk membuka modal
   const openModal = (article) => {
     setSelectedArticle(article);
     setIsModalOpen(true);
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.style.overflow = 'hidden'; // mencegah scrolling latar belakang
   };
 
-  // Function to close the modal
+  // untuk menutup modal
   const closeModal = () => {
     setSelectedArticle(null);
     setIsModalOpen(false);
@@ -130,15 +130,15 @@ const Gallery = () => {
         )}
       </div>
 
-      {/* Modal for displaying full article */}
+      {/* Modal untuk menampilkan deatil artikel */}
       {isModalOpen && selectedArticle && (
         <div 
             className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 transition-opacity duration-300"
-            onClick={closeModal} // Close modal on overlay click
+            onClick={closeModal} // tutup modal saat klik overlay
         >
           <div 
             className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative animate-modalShow"
-            onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking inside modal content
+            onClick={(e) => e.stopPropagation()} // mencegah modal tertutup ketika mengklik area dalam modal
           >
             <button
               onClick={closeModal}
@@ -171,7 +171,7 @@ const Gallery = () => {
               </div>
             )}
             
-            {/* Full Article Content */}
+            {/* konten detail artikel */}
             <div 
                 className="prose prose-sm sm:prose-base max-w-none text-gray-700 leading-relaxed mb-6"
                 dangerouslySetInnerHTML={{ __html: selectedArticle.content || 'Konten tidak tersedia.' }} 
@@ -206,7 +206,7 @@ const Gallery = () => {
           </div>
         </div>
       )}
-      {/* Add some CSS for modal animation if you don't have it globally */}
+      {/* menambahkan css untuk animasi modal */}
       <style jsx global>{`
         .animate-modalShow {
           animation: modalShow 0.3s ease-out forwards;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'; // Asumsi Anda menggunakan React Router
 import { Zap, Leaf, Users, ShieldCheck, PlayCircle, ShoppingBag, Recycle, ShoppingBagIcon, LucideRecycle, GalleryHorizontalEndIcon, CameraIcon, LucideLeafyGreen, LeafyGreen } from 'lucide-react';
 
 const FeatureCard = ({ icon, title, description, link, linkText }) => (
-  <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-green-200/50 transition-shadow duration-300 flex flex-col items-center text-center h-full"> {/* Added h-full for equal height cards */}
+  <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-green-200/50 transition-shadow duration-300 flex flex-col items-center text-center h-full"> 
     <div className="mb-4 text-green-600">{icon}</div>
     <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
     <p className="text-gray-600 text-sm mb-4 flex-grow">{description}</p>
@@ -32,13 +32,13 @@ const HomePage = () => {
           <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 justify-center">
             <Link
               to="/education"
-              className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block text-lg w-full sm:w-auto" // Added w-full sm:w-auto
+              className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block text-lg w-full sm:w-auto" 
             >
               Mulai Belajar
             </Link>
             <Link
               to="/product"
-              className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block text-lg w-full sm:w-auto" // Added w-full sm:w-auto
+              className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 inline-block text-lg w-full sm:w-auto" 
             >
               Lihat Produk
             </Link>
@@ -81,7 +81,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonial atau CTA Section */}
+      {/* CTA Section */}
       <section className="py-16 bg-gradient-to-br from-green-100 via-lime-50 to-emerald-100 text-green-800">
         <div className="container mx-auto px-6 text-center">
           <CameraIcon size={56} className="mx-auto mb-6 text-lime-500" /> {/* Adjusted color for better contrast */}

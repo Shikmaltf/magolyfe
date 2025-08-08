@@ -52,13 +52,15 @@ const About = () => {
         {/* ksm */}
          <div className="mb-12">
           <header className="text-center">
-            <img src="/logo2.png" alt="[Logo KSM Watesa Jamaras 02]" className="mx-auto h-48 w-48" />
+            <img src="/logo2.png" alt="[Logo KSM Watesa Jamaras 02]" 
+            className="mx-auto h-48 w-48" />
             <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 my-3">
               <span className="text-lime-600">KSM Watesa Jamaras 02</span>
             </h1>
           </header>
           {/* Section dengan gambar dan deskripsi */}
-          <section className="mt-6 bg-white p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-8">
+          <section className="mt-6 bg-white p-8 rounded-xl shadow-lg flex flex-col 
+          md:flex-row items-center gap-8">
             {/* Kolom Gambar */}
             <div className="md:w-1/3 w-full flex-shrink-0">
               <img 
@@ -106,7 +108,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Tim Kami (Opsional) */}
+        {/* Tim Kami */}
         {teamMembers && teamMembers.length > 0 && (
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-green-700 mb-8 text-center flex items-center justify-center">

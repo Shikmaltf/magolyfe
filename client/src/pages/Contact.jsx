@@ -55,13 +55,15 @@ const ReviewForm = ({ onReviewAdded }) => {
             </h2>
             <form onSubmit={handleSubmit} noValidate>
                 <div className="mb-4">
-                    <label htmlFor="review-name" className="block text-sm font-medium text-gray-700 mb-1">Nama Anda</label>
+                    <label htmlFor="review-name" className="block text-sm font-medium 
+                    text-gray-700 mb-1">Nama Anda</label>
                     <input
                         type="text"
                         id="review-name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md 
+                        shadow-sm focus:ring-green-500 focus:border-green-500"
                         required
                         placeholder="Contoh: Budi"
                     />
@@ -72,7 +74,8 @@ const ReviewForm = ({ onReviewAdded }) => {
                         {[1, 2, 3, 4, 5].map((star) => (
                             <Star
                                 key={star}
-                                className={`cursor-pointer w-8 h-8 transition-colors ${rating >= star ? 'text-yellow-400' : 'text-gray-300 hover:text-yellow-300'}`}
+                                className={`cursor-pointer w-8 h-8 transition-colors 
+                                    ${rating >= star ? 'text-yellow-400' : 'text-gray-300 hover:text-yellow-300'}`}
                                 fill={rating >= star ? 'currentColor' : 'none'}
                                 onClick={() => setRating(star)}
                             />
@@ -80,13 +83,15 @@ const ReviewForm = ({ onReviewAdded }) => {
                     </div>
                 </div>
                 <div className="mb-6">
-                    <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Ulasan Anda</label>
+                    <label htmlFor="description" className="block text-sm font-medium 
+                    text-gray-700 mb-1">Ulasan Anda</label>
                     <textarea
                         id="description"
                         rows="4"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="w-full px-3 py-2 border border-gray-300 
+                        rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
                         required
                         placeholder="Bagaimana pengalaman Anda dengan Magolyfe?"
                     ></textarea>
@@ -96,7 +101,10 @@ const ReviewForm = ({ onReviewAdded }) => {
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 disabled:bg-green-400 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center bg-green-600 
+                    hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg 
+                    shadow-md hover:shadow-lg transition-all duration-300 disabled:bg-green-400 
+                    disabled:cursor-not-allowed"
                 >
                     <Send size={20} className="mr-2" />
                     {isSubmitting ? 'Mengirim...' : 'Kirim Ulasan'}
