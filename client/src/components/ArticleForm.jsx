@@ -1,8 +1,9 @@
 // frontend/src/components/ArticleForm.jsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import api from '../config/axios';
+import api from '../config/axios'; 
 import { ArrowLeft, UploadCloud, Youtube, Trash2, ImagePlus } from 'lucide-react'; // Tambahkan ImagePlus
+import Cropper from 'react-easy-crop';
 
 const ArticleForm = () => {
   const { id } = useParams();
@@ -18,6 +19,14 @@ const ArticleForm = () => {
   const [removeCurrentImage, setRemoveCurrentImage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentArticleIdForEffect, setCurrentArticleIdForEffect] = useState(null);
+
+  // --- Cropper states (baru, hanya untuk cropper) ---
+  const [showCropper, setShowCropper] = useState(false);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [aspect, setAspect] = useState(16 / 9);
+  // ---------------------------------------------------
 
   const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const isEditing = !!id;
@@ -102,6 +111,8 @@ const ArticleForm = () => {
       setImagePreview(previewUrl);
       setRemoveCurrentImage(false);
       setInitialImageExists(false);
+      // buka cropper ketika ada file baru
+      setShowCropper(true);
     } else {
       // Jika pembatalan file picker, jangan langsung hapus preview jika ada initial image
       if (!initialImageExists || removeCurrentImage) {
@@ -123,6 +134,72 @@ const ArticleForm = () => {
     setImagePreview(''); // Kosongkan preview segera
     // initialImageExists biarkan, karena ini menandakan gambar *pernah* ada di server
   };
+
+  // --- Cropper helpers ---
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const getCroppedImg = useCallback((imageSrc, pixelCrop) => {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      // supaya coba handle sumber dari server (CORS) — jika server mengizinkan
+      image.crossOrigin = 'anonymous';
+      image.src = imageSrc;
+      image.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.max(1, Math.floor(pixelCrop.width));
+        canvas.height = Math.max(1, Math.floor(pixelCrop.height));
+        const ctx = canvas.getContext('2d');
+
+        ctx.drawImage(
+          image,
+          pixelCrop.x,
+          pixelCrop.y,
+          pixelCrop.width,
+          pixelCrop.height,
+          0,
+          0,
+          pixelCrop.width,
+          pixelCrop.height
+        );
+
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            reject(new Error('Canvas kosong'));
+            return;
+          }
+          blob.name = 'cropped.jpeg';
+          const fileUrl = URL.createObjectURL(blob);
+          resolve({ blob, fileUrl });
+        }, 'image/jpeg', 0.92);
+      };
+      image.onerror = (err) => {
+        console.error('getCroppedImg: image onerror', err, imageSrc);
+        reject(err);
+      };
+    });
+  }, []);
+
+  const handleCropSave = async () => {
+    try {
+      if (!croppedAreaPixels) {
+        // tidak ada area crop -> tutup saja
+        setShowCropper(false);
+        return;
+      }
+      const { blob, fileUrl } = await getCroppedImg(imagePreview, croppedAreaPixels);
+      const croppedFile = new File([blob], imageFile?.name || 'cropped.jpeg', { type: 'image/jpeg' });
+      setImageFile(croppedFile);
+      setImagePreview(fileUrl);
+      setShowCropper(false);
+    } catch (e) {
+      console.error('ArticleForm.jsx: Crop error:', e);
+      alert('Gagal memotong gambar');
+      setShowCropper(false);
+    }
+  };
+  // --- end cropper helpers ---
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -175,159 +252,228 @@ const ArticleForm = () => {
   }
 
   return (
-    <div className="p-4 sm:p-6 bg-gray-100 min-h-screen">
-      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-xl p-6 sm:p-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-green-800">
-            {isEditing ? 'Edit Artikel' : 'Tambah Artikel Baru'}
-          </h1>
-          <Link
-            to="/admin/articles"
-            className="flex items-center bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg transition duration-200"
-          >
-            <ArrowLeft size={18} className="mr-2" />
-            Kembali
-          </Link>
-        </div>
+    <>
+      {/* --- Modal Cropper (hanya tambahan) --- */}
+      {showCropper && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-3xl p-4">
+            <div className="relative w-full h-72 bg-gray-800 rounded">
+              <Cropper
+                image={imagePreview}
+                crop={crop}
+                zoom={zoom}
+                aspect={aspect}
+                onCropChange={setCrop}
+                onZoomChange={setZoom}
+                onCropComplete={onCropComplete}
+              />
+            </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="title" className="block text-sm font-medium text-green-700 mb-1">Judul Artikel</label>
-            <input
-              type="text"
-              id="title"
-              className="w-full p-3 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
-              value={title}
-              onChange={e => setTitle(e.target.value)}
-              required
-              placeholder="Masukkan judul artikel"
-              disabled={isLoading}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="content" className="block text-sm font-medium text-green-700 mb-1">Isi Artikel</label>
-            <textarea
-              id="content"
-              className="w-full p-3 border border-green-300 rounded-lg h-64 min-h-[150px] focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
-              value={content}
-              onChange={e => setContent(e.target.value)}
-              required
-              placeholder="Tulis isi artikel di sini..."
-              disabled={isLoading}
-            />
-          </div>
-
-          {/* --- MODIFIED IMAGE UPLOAD SECTION --- */}
-          <div>
-            <label className="block text-sm font-medium text-green-700 mb-1">
-              Gambar Artikel (Opsional)
-            </label>
-            <div className="mt-1 p-6 border-2 border-green-300 border-dashed rounded-md space-y-4">
-              {showImagePreview && (
-                <div className="text-center">
-                  <img
-                    src={imagePreview}
-                    alt="Pratinjau Gambar"
-                    className="mx-auto max-h-60 w-auto object-contain rounded-md shadow mb-3"
-                    onError={(e) => {
-                        console.error('ArticleForm.jsx: Error loading image preview:', imagePreview, e);
-                        e.target.alt = 'Gagal memuat pratinjau';
-                        e.target.src = 'https://via.placeholder.com/300x200?text=Error+Memuat+Gambar'; // Fallback image
-                    }}
-                  />
-                  <button
-                    type="button"
-                    onClick={handleRemoveCurrentImage}
-                    className="text-sm text-red-600 hover:text-red-800 flex items-center justify-center mx-auto bg-red-100 hover:bg-red-200 px-3 py-1.5 rounded-md transition-colors duration-150"
-                    disabled={isLoading}
+            <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Aspect Ratio</label>
+                  <select
+                    value={aspect}
+                    onChange={(e) => setAspect(Number(e.target.value))}
+                    className="mt-1 block rounded border px-2 py-1"
                   >
-                    <Trash2 size={14} className="mr-1.5" /> Hapus Gambar Ini
-                  </button>
+                    <option value={4/3}>4:3</option>
+                    <option value={16/9}>16:9</option>
+                    <option value={3/2}>3:2</option>
+                  </select>
                 </div>
-              )}
 
-              <div className="flex flex-col items-center text-center">
-                {(!showImagePreview || removeCurrentImage) && ( // Show icon if no preview or if we're in 'remove mode'
-                    <UploadCloud className="h-12 w-12 text-green-400 mb-2" />
-                )}
-                <label
-                  htmlFor="image-upload"
-                  className={`cursor-pointer font-medium text-white rounded-lg px-4 py-2.5 transition-colors duration-150 flex items-center group
-                              ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500'}`}
-                >
-                  <ImagePlus size={18} className="mr-2 group-hover:animate-pulse" />
-                  <span>{uploadButtonText}</span>
-                  <input id="image-upload" name="image" type="file" className="sr-only" onChange={handleImageChange} accept="image/*" disabled={isLoading} />
-                </label>
-                <p className="text-xs text-gray-500 mt-2">PNG, JPG, GIF. Ukuran maks: 5MB.</p>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Zoom</label>
+                  <input
+                    type="range"
+                    min="1"
+                    max="3"
+                    step="0.05"
+                    value={zoom}
+                    onChange={(e) => setZoom(Number(e.target.value))}
+                    className="mt-1"
+                  />
+                </div>
               </div>
-              
-              {removeCurrentImage && initialImageExists && (
-                <p className="text-sm text-center text-orange-600 bg-orange-100 p-2 rounded-md">
-                  Gambar sebelumnya akan dihapus saat disimpan. <br/> Unggah file baru untuk mengganti atau biarkan kosong.
-                </p>
-              )}
+
+              <div className="flex gap-3 justify-end">
+                <button
+                  type="button"
+                  onClick={() => setShowCropper(false)}
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded"
+                >
+                  Batal
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCropSave}
+                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                >
+                  Simpan
+                </button>
+              </div>
             </div>
           </div>
-          {/* --- END OF MODIFIED IMAGE UPLOAD SECTION --- */}
+        </div>
+      )}
+      {/* --- end Modal Cropper --- */}
 
-
-          <div>
-            <label htmlFor="youtubeUrl" className="block text-sm font-medium text-green-700 mb-1">
-              Link Video YouTube (Opsional)
-            </label>
-            <div className="mt-1 relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Youtube className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                type="url"
-                id="youtubeUrl"
-                className="w-full p-3 pl-10 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
-                value={youtubeUrl}
-                onChange={e => setYoutubeUrl(e.target.value)}
-                placeholder="Contoh: https://www.youtube.com/watch?v=VIDEO_ID"
-                disabled={isLoading}
-                />
-            </div>
-            {youtubeUrl && getYouTubeVideoId(youtubeUrl) && (
-                <div className="mt-4">
-                    <p className="text-sm text-gray-600 mb-2">Pratinjau Video:</p>
-                    <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow">
-                      <div className="aspect-video rounded-lg overflow-hidden shadow-lg">  
-                        <iframe
-                            className="w-full h-full"
-                            src={`https://www.youtube.com/embed/${getYouTubeVideoId(youtubeUrl)}`}
-                            title="Pratinjau Video YouTube"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
-                      </div>
-                    </div>
-                </div>
-            )}
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button
-              type="submit"
-              className="w-full sm:w-auto flex-grow bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={isLoading}
-            >
-              {isLoading ? (isEditing ? 'Menyimpan...' : 'Memublikasikan...') : (isEditing ? 'Simpan Perubahan' : 'Publikasikan Artikel')}
-            </button>
+      <div className="p-4 sm:p-6 bg-gray-100 min-h-screen">
+        <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-xl p-6 sm:p-8">
+          <div className="flex justify-between items-center mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-green-800">
+              {isEditing ? 'Edit Artikel' : 'Tambah Artikel Baru'}
+            </h1>
             <Link
               to="/admin/articles"
-              className={`w-full sm:w-auto text-center bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-3 px-6 rounded-lg transition duration-200 text-lg ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
+              className="flex items-center bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg transition duration-200"
             >
-              Batal
+              <ArrowLeft size={18} className="mr-2" />
+              Kembali
             </Link>
           </div>
-        </form>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="title" className="block text-sm font-medium text-green-700 mb-1">Judul Artikel</label>
+              <input
+                type="text"
+                id="title"
+                className="w-full p-3 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+                required
+                placeholder="Masukkan judul artikel"
+                disabled={isLoading}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="content" className="block text-sm font-medium text-green-700 mb-1">Isi Artikel</label>
+              <textarea
+                id="content"
+                className="w-full p-3 border border-green-300 rounded-lg h-64 min-h-[150px] focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                value={content}
+                onChange={e => setContent(e.target.value)}
+                required
+                placeholder="Tulis isi artikel di sini..."
+                disabled={isLoading}
+              />
+            </div>
+
+            {/* --- MODIFIED IMAGE UPLOAD SECTION --- */}
+            <div>
+              <label className="block text-sm font-medium text-green-700 mb-1">
+                Gambar Artikel (Opsional)
+              </label>
+              <div className="mt-1 p-6 border-2 border-green-300 border-dashed rounded-md space-y-4">
+                {showImagePreview && (
+                  <div className="text-center">
+                    <img
+                      src={imagePreview}
+                      alt="Pratinjau Gambar"
+                      className="mx-auto max-h-60 w-auto object-contain rounded-md shadow mb-3"
+                      onError={(e) => {
+                          console.error('ArticleForm.jsx: Error loading image preview:', imagePreview, e);
+                          e.target.alt = 'Gagal memuat pratinjau';
+                          e.target.src = 'https://via.placeholder.com/300x200?text=Error+Memuat+Gambar'; // Fallback image
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={handleRemoveCurrentImage}
+                      className="text-sm text-red-600 hover:text-red-800 flex items-center justify-center mx-auto bg-red-100 hover:bg-red-200 px-3 py-1.5 rounded-md transition-colors duration-150"
+                      disabled={isLoading}
+                    >
+                      <Trash2 size={14} className="mr-1.5" /> Hapus Gambar Ini
+                    </button>
+                  </div>
+                )}
+
+                <div className="flex flex-col items-center text-center">
+                  {(!showImagePreview || removeCurrentImage) && ( // Show icon if no preview or if we're in 'remove mode'
+                      <UploadCloud className="h-12 w-12 text-green-400 mb-2" />
+                  )}
+                  <label
+                    htmlFor="image-upload"
+                    className={`cursor-pointer font-medium text-white rounded-lg px-4 py-2.5 transition-colors duration-150 flex items-center group
+                                ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500'}`}
+                  >
+                    <ImagePlus size={18} className="mr-2 group-hover:animate-pulse" />
+                    <span>{uploadButtonText}</span>
+                    <input id="image-upload" name="image" type="file" className="sr-only" onChange={handleImageChange} accept="image/*" disabled={isLoading} />
+                  </label>
+                  <p className="text-xs text-gray-500 mt-2">PNG, JPG, GIF. Ukuran maks: 5MB.</p>
+                </div>
+                
+                {removeCurrentImage && initialImageExists && (
+                  <p className="text-sm text-center text-orange-600 bg-orange-100 p-2 rounded-md">
+                    Gambar sebelumnya akan dihapus saat disimpan. <br/> Unggah file baru untuk mengganti atau biarkan kosong.
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* --- END OF MODIFIED IMAGE UPLOAD SECTION --- */}
+
+
+            <div>
+              <label htmlFor="youtubeUrl" className="block text-sm font-medium text-green-700 mb-1">
+                Link Video YouTube (Opsional)
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Youtube className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                  type="url"
+                  id="youtubeUrl"
+                  className="w-full p-3 pl-10 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                  value={youtubeUrl}
+                  onChange={e => setYoutubeUrl(e.target.value)}
+                  placeholder="Contoh: https://www.youtube.com/watch?v=VIDEO_ID"
+                  disabled={isLoading}
+                  />
+              </div>
+              {youtubeUrl && getYouTubeVideoId(youtubeUrl) && (
+                  <div className="mt-4">
+                      <p className="text-sm text-gray-600 mb-2">Pratinjau Video:</p>
+                      <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow">
+                        <div className="aspect-video rounded-lg overflow-hidden shadow-lg">  
+                          <iframe
+                              className="w-full h-full"
+                              src={`https://www.youtube.com/embed/${getYouTubeVideoId(youtubeUrl)}`}
+                              title="Pratinjau Video YouTube"
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                          ></iframe>
+                        </div>
+                      </div>
+                  </div>
+              )}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <button
+                type="submit"
+                className="w-full sm:w-auto flex-grow bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isLoading}
+              >
+                {isLoading ? (isEditing ? 'Menyimpan...' : 'Memublikasikan...') : (isEditing ? 'Simpan Perubahan' : 'Publikasikan Artikel')}
+              </button>
+              <Link
+                to="/admin/articles"
+                className={`w-full sm:w-auto text-center bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-3 px-6 rounded-lg transition duration-200 text-lg ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
+              >
+                Batal
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

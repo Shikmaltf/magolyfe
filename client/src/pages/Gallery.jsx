@@ -158,7 +158,7 @@ const Gallery = () => {
             </div>
 
             {selectedArticle.hasImage && (
-              <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden mb-6 shadow-md">
+              <div className="w-full rounded-lg overflow-hidden mb-6 shadow-md">
                 <img
                   src={`${API_BASE_URL}/api/articles/${selectedArticle._id}/image?v=${new Date(selectedArticle.updatedAt || selectedArticle.createdAt).getTime()}`}
                   alt={selectedArticle.title || 'Gambar Artikel'}

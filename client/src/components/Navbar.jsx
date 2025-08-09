@@ -1,11 +1,10 @@
-// frontend/src/components/Navbar.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom'; 
 import { performLogout, isTokenStillValid } from '../utils/auth';
 
 const Navbar = () => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -14,7 +13,7 @@ const Navbar = () => {
     };
 
     checkAdminStatus();
-    setIsMobileMenuOpen(false); // Close mobile menu on location change
+    setIsMobileMenuOpen(false);
 
     const handleStorageChange = () => {
       checkAdminStatus();
@@ -29,24 +28,17 @@ const Navbar = () => {
 
   const handleLogoutClick = () => {
     performLogout('/login');
-    setIsMobileMenuOpen(false); // Close mobile menu on logout
+    setIsMobileMenuOpen(false);
   };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const closeMobileMenu = () => {
-    if(isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-    }
-  }
-
   const navLinkClasses = "hover:text-green-200 transition duration-200 font-medium block py-2 md:py-0 md:inline-block";
   const adminButtonContainerClasses = "flex items-center space-x-4 mt-4 md:mt-0";
   const loginButtonClasses = "bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition duration-200 font-medium block w-full text-center md:w-auto md:inline-block mt-4 md:mt-0";
 
-  // Custom NavLink component to handle active state
   const NavLink = ({ to, children, className }) => {
     const isActive = location.pathname === to;
     return (
@@ -67,14 +59,24 @@ const Navbar = () => {
     <nav className="bg-green-800 text-white shadow-lg">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
-          {/* Logo */}
-          <Link
-              to="/"
-              className="flex items-center space-x-2 text-xl font-bold hover:text-green-200"
-              onClick={() => setIsMobileMenuOpen(false)}>
-              
-              <span>Magolyfe</span>
+
+          {/* Left side: Logo (link to /admin if admin, else /) + Magolyfe text (link to /) */}
+          <div className="flex items-center space-x-3">
+            <Link to={isAdmin ? "/admin" : "/login"} onClick={() => setIsMobileMenuOpen(false)}>
+              <img
+                src="mago-putih.png"
+                alt="Magolyfe Logo"
+                className="h-10 w-10"
+              />
             </Link>
+            <Link
+              to="/"
+              className="text-xl font-bold hover:text-green-200"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Magolyfe
+            </Link>
+          </div>
 
           {/* Hamburger Button for Mobile */}
           <div className="md:hidden">
@@ -96,14 +98,16 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Desktop Menu Links */}
+          {/* Right side: Desktop Menu Links + Admin or Login */}
           <div className="hidden md:flex space-x-6 items-center">
+
             <NavLink to="/" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Beranda</NavLink>
             <NavLink to="/education" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Edukasi</NavLink>
             <NavLink to="/gallery" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Galeri</NavLink>
             <NavLink to="/product" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Produk</NavLink>
             <NavLink to="/about" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Tentang</NavLink>
             <NavLink to="/contact" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Kontak</NavLink>
+
             {isAdmin ? (
               <div className={adminButtonContainerClasses.replace('mt-4', '').replace('md:mt-0', '')}>
                 <NavLink to="/admin" className={navLinkClasses.replace('block', 'inline-block').replace('py-2', '')}>Admin</NavLink>
@@ -114,21 +118,9 @@ const Navbar = () => {
                   Logout
                 </button>
               </div>
-            ) : (
-              <Link
-                to="/login"
-              >
-                <img
-                src="mago-putih.png"
-                alt="Magolyfe Logo"
-                className="h-10 w-10"
-              />
-              </Link>
-            )}
+            ) : null}
           </div>
         </div>
-
-
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
@@ -143,21 +135,13 @@ const Navbar = () => {
               <div className={`${adminButtonContainerClasses} flex-col space-y-2 space-x-0 items-start`}>
                 <Link to="/admin" className={navLinkClasses} onClick={toggleMobileMenu}>Admin</Link>
                 <button
-                  onClick={handleLogoutClick} // handleLogoutClick already calls setIsMobileMenuOpen(false) via location change
+                  onClick={handleLogoutClick}
                   className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition duration-200 w-full"
                 >
                   Logout
                 </button>
               </div>
-            ) : (
-              <Link
-                to="/login"
-                className={loginButtonClasses}
-                onClick={toggleMobileMenu}
-              >
-                <img src="ksm.jpg" alt="Admin Icon" className="inline-block h-7 w-7 mr-2" />
-              </Link>
-            )}
+            ) : null}
           </div>
         )}
       </div>

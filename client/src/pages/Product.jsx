@@ -181,7 +181,7 @@ const Product = () => {
 
 
                   {selectedProduct.hasImage && (
-                    <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden mb-6 shadow-md">
+                    <div className="w-full rounded-lg overflow-hidden mb-6 shadow-md">
                       <img
                         src={`${API_BASE_URL}/api/products/${selectedProduct._id}/image?v=${new Date(selectedProduct.updatedAt || selectedProduct.createdAt).getTime()}`}
                         alt={selectedProduct.name || 'Gambar Product'}

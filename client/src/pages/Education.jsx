@@ -16,6 +16,18 @@ const educationVideos = [
     videoId: 'zN9Wg6G_NSg', // ID video YouTube
     description: 'Mari simak proses pengolahan limbah organik menggunakan Maggot BSF, Sang robot organik!',
   },
+  {
+    id: '3',
+    title: 'Demo Penggunaan Web Magolyfe',
+    videoId: 'XoKI8mg6Jdo', // ID video YouTube
+    description: 'Yuk, jelajahi Magolyfe!',
+  },
+  {
+    id: '4',
+    title: 'Demo Penggunaan Web Magolyfe',
+    videoId: 'IkdB_MhTJUM', // ID video YouTube
+    description: 'Yuk intip kegiatan Ibu-ibu tangguh dari KSM Watesa setiap Hari Selasa dan Jumat di wilayah Jamaras 02!',
+  },
 ];
 
 // Komponen untuk menampilkan satu item video
