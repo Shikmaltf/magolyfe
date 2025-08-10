@@ -24,7 +24,7 @@ const educationVideos = [
   },
   {
     id: '4',
-    title: 'Demo Penggunaan Web Magolyfe',
+    title: 'Kegiatan Rutin KSM Watesa',
     videoId: 'IkdB_MhTJUM', // ID video YouTube
     description: 'Yuk intip kegiatan Ibu-ibu tangguh dari KSM Watesa setiap Hari Selasa dan Jumat di wilayah Jamaras 02!',
   },
